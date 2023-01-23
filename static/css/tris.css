@@ -56,7 +56,6 @@
 .col{
 	width: 80px;
 	height: 80px;
-	background: white;
 	border: 1px solid black;
 		
 }
@@ -70,13 +69,13 @@
 .player1{
   /*background-color: purple;*/
   background-size: cover;
-  background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.ltzbpEUAXtg62xu7cuxS7gAAAA%26pid%3DApi&f=1&ipt=9547995f3384b1d89724381e1df725f9fe5cc010b29706933524418e7152eaad&ipo=images)
+  background-image: url("foto1.jpeg")
 }
 
 .player2{
   /*background-color: blue;*/
   background-size: cover;
-  background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.-L1hh-PpixumCV5U8hJ97AHaHa%26pid%3DApi&f=1&ipt=5f2d18e7158a8a9aa49a94f26ebd09b156247bc534465713f5ca694d2439b40b&ipo=images);
+  background-image: url(../static/IMG/th-4141251076-removebg-preview.png);
 }
 
 .container{
@@ -89,6 +88,22 @@
 
 .punteggio2{
 
+}
+
+.bordosopr{
+	border-top: none;
+}
+
+.bordosot{
+	border-bottom: none;
+}
+
+.bordodestr{
+	border-right: none;
+}
+
+.bordosinistr{
+	border-left: none;
 }
 
 
