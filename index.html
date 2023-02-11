@@ -10,66 +10,76 @@
 </head>
 <body>
 	<div class="bg-img">
-		<h1 class="titolo">TRIS!</h1>
+		<div class="container" >
+			<h1 class="titolo">TRIS!</h1>
+		</div>
 		<div class="flex container">
 			<div class="coltelloxforchetta">
-				<img class="fillImage" src="static/IMG/th-494486718-removebg-preview.png">
+				<img class="fillImage" src="static/IMG/th-494486718-removebg-preview.png"> <h2 class="Xscore">SCORE: <span></span></h2>
 			</div>
 
 			<div class="tris">
 
 				<div class="row ">
+
 					<div class="col bordosopr bordosinistr">
 						<a href="#" class="gridBtn player1"></a>
 					</div>
+
 					<div class="col bordosopr">
 						<a href="#" class="gridBtn player1"></a>
 					</div>
+
 					<div class="col bordosopr bordodestr">
 						<a href="#" class="gridBtn player2"></a>
 					</div>
+
 				</div>
 
+
 				<div class="row">
+
 					<div class="col bordosinistr">
 						<a href="#" class="gridBtn player1"></a>
 					</div>
+
 					<div class="col">
 						<a href="#" class="gridBtn player2"></a>
 					</div>
+
 					<div class="col bordodestr">
 						<a href="#" class="gridBtn player1"></a>
 					</div>
+
 				</div>
 
+
 				<div class="row ">
+
 					<div class="col bordosot bordosinistr">
 						<a href="#" class="gridBtn player2"></a>
 					</div>
+
 					<div class="col bordosot">
 						<a href="#" class="gridBtn player2"></a>
 					</div>
+
 					<div class="col bordosot bordodestr">
 						<a href="#" class="gridBtn player1"></a>
 					</div>
+
 				</div>
 
 			</div>
 
+
 			<div class="piatto">
-				<img class="fillImage" src="static/IMG/th-4141251076-removebg-preview.png">
+				<img class="fillImage" src="static/IMG/th-4141251076-removebg-preview.png"> <h2 class="Oscore">SCORE: <span></span></h2> 
 			</div>
 		</div>
-		<div>
-			<div>
-				<h2 class="punteggio1">SCORE:</h2>
-			</div>
-			<div>
-				<h2 class="punteggio2">SCORE:</h2>
-			</div>
-		</div>
+		
 		<div class="button flex">
-			<input type="button" value=START onclick=“gioca()”>
+			<button id="Button" onclick="ClickButton()">START!</button>
 		</div>
 	</div>
 
