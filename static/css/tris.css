@@ -1,127 +1,125 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.bg-img{
-	background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.funweek.it%2Fapp%2Fuploads%2F2021%2F01%2FMasterChef-Italia-Antonino-Cannavacciuolo-Bruno-Barbieri-e-Giorgio-Locatelli-2-1536x951.jpg&f=1&nofb=1&ipt=7489364810fca3c8dcc7835e08f6b3e4bfbb654b4f3d8e6db6065206d79ba751&ipo=images);
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 100vh;
-
-}
-
-.container{
-}
-
-.titolo{
-	text-align: center;
-	font-size: 60px;
-	border-radius: 10px;
-	border: 7px solid black;
-	box-shadow: black 7px 7px 12px;
-}
-
-.coltelloxforchetta {
-	width: 150px;
-	height: 150px;
-}
-
- 
-.piatto {
-	width: 150px;
-	height: 150px;
-}
-
-.fillImage{
-	width: 100%;
-	height: 100%;
-}
-
-.flex{
+body{
 	display: flex;
-	justify-content: space-around;
+	flex-direction: column;
+	align-items: center;
+	background-color: black;
+}
+
+#Board{
+	margin-top: 100px;
+	display: grid;
+	grid-template-columns: 100px 100px 100px;
+	grid-template-rows: 100px 100px 100px;
+	cursor: pointer;
+	position: relative; /* così quando faccio tris la barra non esce dal rage della Board */
+}
+
+h1{
+	color: red;
+}
+
+.right-border {
+	border-right: 0.2em solid indigo;
+}
+
+.bottom-border {
+	border-bottom: 0.2em solid indigo;
+}
+
+.cella{
+	color: blue;
+	/*margin: 10px;
+	background-color: gray;*/
+	font-size: 2em;
+	display: flex;
+	justify-content: center;
 	align-items: center;
 }
 
-#Button{
-	text-align: center;
-	margin-top: 200px;
-	width: 100px;
-	height: 50px;
-	background-color: orange;
-	border: 2px solid black;
-	border-radius: 10px;
-	cursor: pointer;
-	font-size: 25px;
+.strike{
+	position: absolute;
+	background-color: darkred;
 }
 
-.tris{
-	margin-top: 50px;
-	display: flex;
-	flex-direction: column;
-}
-
-.row{
-	display: flex;
-}
-
-.col{
-	width: 80px;
-	height: 80px;
-	border: 1px solid black;
-		
-}
-
-.gridBtn{
-	display: block;
+.strike-row-1{ /* per quando si fa tris */
 	width: 100%;
+	height: 4px;
+	top: 15%;
+}
+
+.strike-row-2{ 
+	width: 100%;
+	height: 4px;
+	top: 48%;
+}
+
+.strike-row-3{ 
+	width: 100%;
+	height: 4px;
+	top: 83%;
+}
+
+.strike-col-1{ 
 	height: 100%;
+	width: 4px;
+	left: 15%;
 }
 
-.player1{
-  /*background-color: purple;*/
-  background-size: cover;
-  background-image: url("foto1.jpeg")
+.strike-col-2{ 
+	height: 100%;
+	width: 4px;
+	left: 48%;
 }
 
-.player2{
-  /*background-color: blue;*/
-  background-size: cover;
-  background-image: url(../static/IMG/th-4141251076-removebg-preview.png);
+.strike-col-3{ 
+	height: 100%;
+	width: 4px;
+	left: 83%;
 }
 
-.container{
-	padding-top: 30px;
-}
-.bordosopr{
-	border-top: none;
-}
-
-.bordosot{
-	border-bottom: none;
+.strike-diag-1{
+	width: 90%;
+	height: 4px;
+	top: 50%;
+	left: 5%;
+	transform: skewY(45deg);
 }
 
-.bordodestr{
-	border-right: none;
+.strike-diag-2{
+	width: 90%;
+	height: 4px;
+	top: 50%;
+	left: 5%;
+	transform: skewY(-45deg);
 }
 
-.bordosinistr{
-	border-left: none;
-}
-
-.Xscore{
+#GameOver-Box{
 	text-align: center;
+	border: 8px solid indigo;
+	padding: 50px;
+	width: 50%;
+	margin-top: 50px;
 }
 
-.Oscore{
-	text-align: center;
+#GameOver-Text{
+	color: yellow;
+	font-size: 3em;
 }
 
-
-
-
+#PlayBtn{
+	background-color: transparent;
+	color: yellow;
+	cursor: pointer;
+	border: 1px solid yellow;
+	padding: 10px;
+	font-size: 1.5em;
+}
 
 
 
