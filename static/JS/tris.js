@@ -73,8 +73,11 @@ function CellaClick(event){
 	}
 
 	//gestito lo switch dei turni 
+	SetHoverText() //per l'anteprima quando si cambia turno
 
 	ChangeTurn.play()
+
+
 }
 
 
