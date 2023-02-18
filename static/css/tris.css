@@ -99,7 +99,7 @@ h1{
 	transform: skewY(-45deg);
 }
 
-#GameOver-Box{
+#GameOverBox{
 	text-align: center;
 	border: 8px solid indigo;
 	padding: 50px;
@@ -107,7 +107,7 @@ h1{
 	margin-top: 50px;
 }
 
-#GameOver-Text{
+#GameOverText{
 	color: yellow;
 	font-size: 3em;
 }
@@ -120,6 +120,25 @@ h1{
 	padding: 10px;
 	font-size: 1.5em;
 }
+
+.hidden{
+	display: none;
+}
+
+.visible{
+	display: block;
+}
+
+.x-hover:hover::after{
+	content:"X";
+	opacity: 0.5;
+} /* hover è uno pseudoselettore quindi quando passeremo il cursore sopra la parte interessata si attiverà */
+
+.o-hover:hover::after{
+	content:"O";
+	opacity: 0.5;
+} 
+
 
 
 
