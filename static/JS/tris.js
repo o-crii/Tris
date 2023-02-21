@@ -72,13 +72,45 @@ function CellaClick(event){
 		turn = PLAYER_X
 	}
 
-	//gestito lo switch dei turni 
+	//gestito lo switch dei turni
+
 	SetHoverText() //per l'anteprima quando si cambia turno
+
+	CheckWinner()
 
 	ChangeTurn.play()
 
 
 }
+
+
+function CheckWinner(){
+	for(const CombinazioniVincenti of CombinazioniVincenti){
+		//estraggo la combinazione vincente
+		const {combo, strikeClass} = CombinazioniVincenti
+	}
+}
+
+
+const CombinazioniVincenti = [ 
+	{combo:[1,2,3], strikeClass: "strike-row-1"} //prima riga
+
+	{combo:[4,5,6], strikeClass: "strike-row-2"} //seconda riga
+
+	{combo:[7,8,9], strikeClass: "strike-row-3"} //terza riga
+
+
+
+	{combo:[1,4,7], strikeClass: "strike-col-1"} //prima colonna
+
+	{combo:[2,5,8], strikeClass: "strike-col-2"} //seconda colonna
+
+	{combo:[3,6,9], strikeClass: "strike-col-3"} //terza colonna
+
+
+	{combo:[1,5,9], strikeClass: "strike-diag-1"} //prima diagonale 
+	{combo:[3,5,7], strikeClass: "strike-diag-2"} //seconda diagonale 
+]
 
 
 
