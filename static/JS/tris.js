@@ -1,128 +1,129 @@
-const cella = document.querySelectorAll(".cella")
-const PLAYER_X = "X"
-const PLAYER_O = "O"
-let turn = PLAYER_X
+const tiles = document.querySelectorAll(".tile");
+const PLAYER_X = "X";
+const PLAYER_O = "O";
+let turn = PLAYER_X;
 
-const BoardState = Array(cella.lenght)  /* la costante BoardState sarà composta da un array con 9 elementi all'interno*/
-BoardState.fill(null)
-
-//elementi
-
-const strike = document.getElementById("strike")
-const GameOverBox = document.getElementById("GameOverBox")
-const GameOverText = document.getElementById("GameOverText")
-const PlayBtn = document.getElementById("PlayBtn")
+const boardState = Array(tiles.length);
+boardState.fill(null);
 
 
-const GameOverSound = new Audio("../sound/GameOverSound.mp3")
-const clickSound = new Audio ("../sound/ChangeTurn.mp3")
+const strike = document.getElementById("strike");
+const gameOverArea = document.getElementById("game-over-area");
+const gameOverText = document.getElementById("game-over-text");
+const playAgain = document.getElementById("play-again");
+playAgain.addEventListener("click", startNewGame);
 
-//anteprima turno
+//Suoni da chiedere a Mastrandrea
+const gameOverSound = new Audio("sounds/game_over.wav");
+const clickSound = new Audio("sounds/click.wav");
 
-function SetHoverText(){
-	//rimuoviamo tutto il testo al passaggio del mouse creando un loop sulle celle
-	cella.forEach((cella) => {
-		cella.classList.remove("x-hover")
-		cella.classList.remove("o-hover")
-	})
+tiles.forEach((tile) => tile.addEventListener("click", tileClick));
 
-	const hoverClass = `${turn.toLowerCase()}-hover`
+function setHoverText() {
+  //aggiusta l'anteprima della mossa da poterla fare solo in celle libere e non occupate
+  tiles.forEach((tile) => {
+    tile.classList.remove("x-hover");
+    tile.classList.remove("o-hover");
+  });
 
-	//impostiamo l'anteprima solo se al passaggio del mouse non è occupata la cella
-	cella.forEach((cella) => {
-		if (cella.innerText == "") { //se il testo della cella è vuoto farà
-			cella.classList.add(hoverClass) //aggiungiamo la classo hover definita nel rigo 29
-		}
-	})
+  const hoverClass = `${turn.toLowerCase()}-hover`;
 
+  tiles.forEach((tile) => {
+    if (tile.innerText == "") {
+      tile.classList.add(hoverClass);
+    }
+  });
 }
 
+setHoverText();
 
-SetHoverText()
+function tileClick(event) {
+  if (gameOverArea.classList.contains("visible")) {
+    return;
+  }
 
+  const tile = event.target;
+  const tileNumber = tile.dataset.index;
+  if (tile.innerText != "") {
+    return;
+  }
 
+  if (turn === PLAYER_X) {
+    tile.innerText = PLAYER_X;
+    boardState[tileNumber - 1] = PLAYER_X;
+    turn = PLAYER_O;
+  } else {
+    tile.innerText = PLAYER_O;
+    boardState[tileNumber - 1] = PLAYER_O;
+    turn = PLAYER_X;
+  }
 
-//visualizzazione cella prima di giocare
-
-cella.forEach((cella) => cella.addEventListener("click", CellaClick))
-
-function CellaClick(event){
-	if (GameOverBox.classList.contains("visible")) {
-		return
-	}
-
-	const cella = event.target
-	const CellaNum = cella.dataset.index
-	if (cella.innerText != "") {
-		return
-	}
-
-	//controllo per vedere chi sta giocando
-	if (turn === PLAYER_X) {
-		cella.innerText = PLAYER_X
-		BoardState[CellaNum-1] = PLAYER_X
-		turn = PLAYER_O
-	}
-
-	//abbiamo gestito il turno di x quindi mo faccio O
-
-	else{
-		cella.innerText = PLAYER_O
-		BoardState[CellaNum-1] = PLAYER_O
-		turn = PLAYER_X
-	}
-
-	//gestito lo switch dei turni
-
-	SetHoverText() //per l'anteprima quando si cambia turno
-
-	CheckWinner()
-
-	//ChangeTurn.play()
-
-
+  clickSound.play();
+  setHoverText();
+  checkWinner();
 }
 
+function checkWinner() {
+  //controllo per il vincitore
+  for (const winningCombination of winningCombinations) {
+    
+    const { combo, strikeClass } = winningCombination;
+    const tileValue1 = boardState[combo[0] - 1];
+    const tileValue2 = boardState[combo[1] - 1];
+    const tileValue3 = boardState[combo[2] - 1];
 
-function CheckWinner(){
-	for(const winningCombination of winningCombinations){
-		//estraggo la combinazione vincente
-		const {combo, strikeClass} = winningCombination
-		const cellaValue1 = BoardState[combo[0] - 1]
-		const cellaValue2 = BoardState[combo[1] - 1]
-		const cellaValue3 = BoardState[combo[2] - 1]
+//se tileValue1 è diverso da null ma è uguale al valore di tileValue2 e tileValue3 applicheraà la classe strike
+    if (
+      tileValue1 != null && tileValue1 === tileValue2 && tileValue1 === tileValue3
+    ) {
+      strike.classList.add(strikeClass);
+      gameOverScreen(tileValue1);
+      return;
+    }
+  }
 
-		if (cellaValue1 != null && cellaValue1 === cellaValue2 && cellaValue1 === cellaValue3) { //se il valore della cella 1 non è nullo ed è uguale al valore della cella 2 e 3 si vince
-			strike.classList.add(strikeClass)
-		}
-
-	}
+  //verifica del pareggio
+  const allTileFilledIn = boardState.every((tile) => tile !== null);
+  if (allTileFilledIn) {
+    gameOverScreen(null);
+  }
 }
 
+//se winnertext è diverso da null ci sarà un vincitore, altrimenti un pareggio
+function gameOverScreen(winnerText) {
+  let text = "PAREGGIO!";
+  if (winnerText != null) {
+    text = `VINCE ${winnerText}!`;
+  }
+  //impostiamo visibili la gameOver area con il suo contenuto e il testo
+  gameOverArea.className = "visible";
+  gameOverText.innerText = text;
+  gameOverSound.play();
+}
 
-const winningCombinations = [ 
-	{combo:[1,2,3], strikeClass: "strike-row-1"} //prima riga
+//nascondiamo l'area del gameOver e impostiamo i valori nelle celle nulli e il turno di x
+function startNewGame() {
+  strike.className = "strike";
+  gameOverArea.className = "hidden";
+  boardState.fill(null);
+  tiles.forEach((tile) => (tile.innerText = ""));
+  turn = PLAYER_X;
+  setHoverText();
+}
 
-	{combo:[4,5,6], strikeClass: "strike-row-2"} //seconda riga
+//combinazioni per decretare il vincitore o il pareggio
+const winningCombinations = [
+  //combinazioni righe
+  { combo: [1, 2, 3], strikeClass: "strike-row-1" },
+  { combo: [4, 5, 6], strikeClass: "strike-row-2" },
+  { combo: [7, 8, 9], strikeClass: "strike-row-3" },
 
-	{combo:[7,8,9], strikeClass: "strike-row-3"} //terza riga
+  //combinazioni colonne
+  { combo: [1, 4, 7], strikeClass: "strike-column-1" },
+  { combo: [2, 5, 8], strikeClass: "strike-column-2" },
+  { combo: [3, 6, 9], strikeClass: "strike-column-3" },
 
-
-
-	{combo:[1,4,7], strikeClass: "strike-col-1"} //prima colonna
-
-	{combo:[2,5,8], strikeClass: "strike-col-2"} //seconda colonna
-
-	{combo:[3,6,9], strikeClass: "strike-col-3"} //terza colonna
-
-
-	{combo:[1,5,9], strikeClass: "strike-diag-1"} //prima diagonale 
-	{combo:[3,5,7], strikeClass: "strike-diag-2"} //seconda diagonale 
-]
-
-
-
-
-
-
-
+  //combinazioni diagonali
+  { combo: [1, 5, 9], strikeClass: "strike-diagonal-1" },
+  { combo: [3, 5, 7], strikeClass: "strike-diagonal-2" },
+];

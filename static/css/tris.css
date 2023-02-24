@@ -1,146 +1,126 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  color: greenyellow;
 }
 
-body{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: black;
+#board {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  cursor: pointer;
+  position: relative;
 }
 
-#Board{
-	margin-top: 100px;
-	display: grid;
-	grid-template-columns: 100px 100px 100px;
-	grid-template-rows: 100px 100px 100px;
-	cursor: pointer;
-	position: relative; /* così quando faccio tris la barra non esce dal rage della Board */
-}
-
-h1{
-	color: red;
+.tile {
+  color: currentColor;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .right-border {
-	border-right: 0.2em solid indigo;
+  border-right: 0.2em solid indigo;
 }
 
 .bottom-border {
-	border-bottom: 0.2em solid indigo;
+  border-bottom: 0.2em solid indigo;
 }
 
-.cella{
-	color: blue;
-	/*margin: 10px;
-	background-color: gray;*/
-	font-size: 2em;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.strike {
+  position: absolute;
+  background-color: darkred;
 }
 
-.strike{
-	position: absolute;
-	background-color: darkred;
+.strike-row-1 {
+  width: 100%;
+  height: 4px;
+  top: 15%;
+}
+.strike-row-2 {
+  width: 100%;
+  height: 4px;
+  top: 48%;
+}
+.strike-row-3 {
+  width: 100%;
+  height: 4px;
+  top: 83%;
+}
+.strike-column-1 {
+  height: 100%;
+  width: 4px;
+  left: 15%;
+}
+.strike-column-2 {
+  height: 100%;
+  width: 4px;
+  left: 48%;
+}
+.strike-column-3 {
+  height: 100%;
+  width: 4px;
+  left: 83%;
+}
+.strike-diagonal-1 {
+  width: 90%;
+  height: 4px;
+  top: 50%;
+  left: 5%;
+  transform: skewY(45deg);
+}
+.strike-diagonal-2 {
+  width: 90%;
+  height: 4px;
+  top: 50%;
+  left: 5%;
+  transform: skewY(-45deg);
 }
 
-.strike-row-1{ /* per quando si fa tris */
-	width: 100%;
-	height: 4px;
-	top: 15%;
+h1 {
+  color: currentColor;
 }
 
-.strike-row-2{ 
-	width: 100%;
-	height: 4px;
-	top: 48%;
+#game-over-area {
+  text-align: center;
+  border: indigo 8px solid;
+  padding: 50px;
+  width: 50%;
+  margin-top: 50px;
 }
 
-.strike-row-3{ 
-	width: 100%;
-	height: 4px;
-	top: 83%;
+h2 {
+  color: currentColor;
+  font-size: 2em;
+  margin-top: 0px;
 }
 
-.strike-col-1{ 
-	height: 100%;
-	width: 4px;
-	left: 15%;
+button {
+  background-color: transparent;
+  color: currentColor;
+  border: currentColor 1px solid;
+  padding: 10px;
+  font-size: 1.5em;
 }
 
-.strike-col-2{ 
-	height: 100%;
-	width: 4px;
-	left: 48%;
+.hidden {
+  display: none;
 }
 
-.strike-col-3{ 
-	height: 100%;
-	width: 4px;
-	left: 83%;
+.visible {
+  display: block;
 }
 
-.strike-diag-1{
-	width: 90%;
-	height: 4px;
-	top: 50%;
-	left: 5%;
-	transform: skewY(45deg);
+.x-hover:hover::after {
+  content: "X";
+  opacity: 0.4;
 }
 
-.strike-diag-2{
-	width: 90%;
-	height: 4px;
-	top: 50%;
-	left: 5%;
-	transform: skewY(-45deg);
+.o-hover:hover::after {
+  content: "O";
+  opacity: 0.4;
 }
-
-#GameOverBox{
-	text-align: center;
-	border: 8px solid indigo;
-	padding: 50px;
-	width: 50%;
-	margin-top: 50px;
-}
-
-#GameOverText{
-	color: yellow;
-	font-size: 3em;
-}
-
-#PlayBtn{
-	background-color: transparent;
-	color: yellow;
-	cursor: pointer;
-	border: 1px solid yellow;
-	padding: 10px;
-	font-size: 1.5em;
-}
-
-.hidden{
-	display: none;
-}
-
-.visible{
-	display: block;
-}
-
-.x-hover:hover::after{
-	content:"X";
-	opacity: 0.5;
-} /* hover è uno pseudoselettore quindi quando passeremo il cursore sopra la parte interessata si attiverà */
-
-.o-hover:hover::after{
-	content:"O";
-	opacity: 0.5;
-} 
-
-
-
-
-
 
