@@ -78,21 +78,29 @@ function CellaClick(event){
 
 	CheckWinner()
 
-	ChangeTurn.play()
+	//ChangeTurn.play()
 
 
 }
 
 
 function CheckWinner(){
-	for(const CombinazioniVincenti of CombinazioniVincenti){
+	for(const winningCombination of winningCombinations){
 		//estraggo la combinazione vincente
-		const {combo, strikeClass} = CombinazioniVincenti
+		const {combo, strikeClass} = winningCombination
+		const cellaValue1 = BoardState[combo[0] - 1]
+		const cellaValue2 = BoardState[combo[1] - 1]
+		const cellaValue3 = BoardState[combo[2] - 1]
+
+		if (cellaValue1 != null && cellaValue1 === cellaValue2 && cellaValue1 === cellaValue3) { //se il valore della cella 1 non è nullo ed è uguale al valore della cella 2 e 3 si vince
+			strike.classList.add(strikeClass)
+		}
+
 	}
 }
 
 
-const CombinazioniVincenti = [ 
+const winningCombinations = [ 
 	{combo:[1,2,3], strikeClass: "strike-row-1"} //prima riga
 
 	{combo:[4,5,6], strikeClass: "strike-row-2"} //seconda riga
