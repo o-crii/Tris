@@ -14,8 +14,8 @@ const playAgain = document.getElementById("play-again");
 playAgain.addEventListener("click", startNewGame);
 
 //Suoni da chiedere a Mastrandrea
-const gameOverSound = new Audio("sounds/game_over.wav");
-const clickSound = new Audio("sounds/click.wav");
+const gameOverSound = new Audio("/static/sound/GameOverSound.mp3");
+const clickSound = new Audio("/static/sound/ChangeTurn.mp3");
 
 tiles.forEach((tile) => tile.addEventListener("click", tileClick));
 
