@@ -3,10 +3,13 @@ body {
   /*flex-direction: column;*/
   /*align-items: center;*/
   background-color: black;
-  color: purple;
+  /*color: purple;*/
 }
 
 .title{
+	margin-left: 35%;
+	text-align: center;
+	width: 400px;
 	margin-top: 10px;
 	font-size: 60px;
 	text-shadow: -3px 0 blue, 0 3px blue, 3px 0 blue, 0 -3px blue;
@@ -18,12 +21,13 @@ body {
 }
 
 #board {
+	margin-left: 40%;
   display: grid;
-  margin-top: 300px;
+  margin-top: 50px;
   grid-template-columns: 100px 100px 100px;
   grid-template-rows: 100px 100px 100px;
   cursor: pointer;
-  position: relative;
+  position: relative; /* serve per lo strike */
 }
 
 .tile {
@@ -31,16 +35,17 @@ body {
   font-size: 2em;
   display: flex;
   justify-content: center;
-  align-items: center;
-  box-shadow: red 3px 3px 6px;	
+  align-items: center;	
 }
 
 .right-border {
   border-right: 0.2em solid blue;
+  box-shadow: red 3px 0px 0px 0px;
 }
 
 .bottom-border {
   border-bottom: 0.2em solid blue;
+  box-shadow: red 3px 0px 0px 0px;
 }
 
 .strike {
@@ -49,52 +54,59 @@ body {
 }
 
 .strike-row-1 {
-  width: 100%;
+	margin-left: 18px;
+  width: 30%;
   height: 2px;
   top: 15%;
 }
 .strike-row-2 {
-  width: 100%;
+	margin-left: 18px;
+  width: 30%;
   height: 2px;
   top: 48%;
 }
 .strike-row-3 {
-  width: 100%;
+	margin-left: 18px;
+  width: 30%;
   height: 2px;
   top: 83%;
 }
 .strike-column-1 {
-  height: 100%;
+	margin-top: 20px;
+  height: 85%;
   width: 2px;
-  left: 15%;
+  left: 5.5%;
 }
 .strike-column-2 {
-  height: 100%;
+	margin-top: 20px;
+  height: 85%;
   width: 2px;
-  left: 48%;
+  left: 17%;
 }
 .strike-column-3 {
-  height: 100%;
+	margin-top: 20px;
+  height: 85%;
   width: 2px;
-  left: 83%;
+  left: 29.5%;
 }
 .strike-diagonal-1 {
-  width: 90%;
+  width: 30%;
   height: 2px;
   top: 50%;
-  left: 5%;
+  left: 3%;
   transform: skewY(45deg);
 }
 .strike-diagonal-2 {
-  width: 90%;
+  width: 30%;
   height: 2px;
   top: 50%;
-  left: 5%;
+  left: 2%;
   transform: skewY(-45deg);
 }
 
 
 #game-over-area {
+	margin-left: 38.5%;
   text-align: center;
   border: limegreen 6px solid;
   border-radius: 10px;
