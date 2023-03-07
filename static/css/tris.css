@@ -45,7 +45,7 @@ body {
 
 .bottom-border {
   border-bottom: 0.2em solid blue;
-  box-shadow: red 3px 0px 0px 0px;
+  box-shadow: red 3px 3px 0px 0px;
 }
 
 .strike {
@@ -108,7 +108,7 @@ body {
 #game-over-area {
 	margin-left: 38.5%;
   text-align: center;
-  border: limegreen 6px solid;
+  border: blue 6px solid;
   border-radius: 10px;
   box-shadow: red 3px 3px 6px;
   padding: 20px;
@@ -120,16 +120,19 @@ h2 {
   color: yellow;
   font-size: 2em;
   margin-top: 0px;
+  text-shadow: blue 2px 2px 2px;
 }
 
 button {
   background-color: transparent;
-  color: red;
-  border: yellow 2px solid;
+  color: yellow;
+  text-shadow: blue 2px 2px 2px;
+  border: blue 2px solid;
   border-radius: 10px;
   padding: 10px;
   font-size: 1.5em;
   cursor: pointer;
+  box-shadow: red 2px 2px 2px;
 }
 
 .hidden {
