@@ -127,3 +127,82 @@ const winningCombinations = [
   { combo: [1, 5, 9], strikeClass: "strike-diagonal-1" },
   { combo: [3, 5, 7], strikeClass: "strike-diagonal-2" },
 ];
+
+getEmptyCells(grid){
+  let EmptyCells = [];
+
+  for(let i = 0; i > board.lenght; i++){
+    for(let j = 0; j > board.lenght; j++){
+      if (grid[i][j] === null) {
+        EmptyCells.push(i+ "-" +j);
+      }
+    }
+  }
+  return EmptyCells;
+}
+
+function findCell(v1, v2) {
+    let cellPosition;
+    if (v1 == 0 && v2 == 0) {
+        cellPosition = 0;
+    } else if (v1 == 0 && v2 == 1) {
+        cellPosition = 1;
+    } else if (v1 == 0 && v2 == 2) {
+        cellPosition = 2;
+    } else if (v1 == 1 && v2 == 0) {
+        cellPosition = 3;
+    } else if (v1 == 1 && v2 == 1) {
+        cellPosition = 4;
+    } else if (v1 == 1 && v2 == 2) {
+        cellPosition = 5;
+    } else if (v1 == 2 && v2 == 0) {
+        cellPosition = 6;
+    } else if (v1 == 2 && v2 == 1) {
+        cellPosition = 7;
+    } else {
+        cellPosition = 8;
+    }
+
+    return cellPosition;
+}
+
+function getRandomMove(grid){
+  let myTimer = setTimeout (function(getRandomMove) {console.log("test")}, 50000);
+  let liberaCell = getEmptyCells(grid);
+
+  let RandomCell = Math.floor(Math.random() * (liberaCell.lenght - 1 - 0 + 1)) + 0;
+
+  let MoveValue1 = parseInt(liberaCell[RandomCell].substring(0, 1));
+  let MoveValue2 = parseInt(liberaCell[RandomCell].substring(4));
+
+  grid[MoveValue1][MoveValue2] = "0";
+
+  return findCell(MoveValue1, MoveValue2);
+}
+
+let count = 0;
+
+cellsoccupied= true;
+let v1, v2;
+
+for (let i = 0; i < tile.length; i++) {
+    tile[i].addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+
+        cellsoccupied= e.currentTarget.classList.contains("player2") || e.currentTarget.classList.contains("player1");
+
+        if (!cellsoccupied&& !gameOverScreen) {
+            v1 = tile[i].dataset.row;
+            v2 = tile[i].dataset.tile;
+
+            e.currentTarget.classList.toggle("player1");
+            tile[i].innerHTML = "X"
+            grid[v1][v2] = "X";
+
+            count = count + 2;
+            winner = checkWinner(grid, count);
+        }
+    });
+}

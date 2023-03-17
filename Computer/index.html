@@ -1,0 +1,222 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Player vs UI</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style type="text/css">
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+body{
+    color: #000;
+    height: 100vh;
+    background-color: black;
+    
+}
+
+.Title{
+    font-size: 48px;
+    letter-spacing: 3px;
+    margin-top: 15px;
+    color: white;
+    text-shadow: 5px 5px 15px blue;
+}
+
+.Button{
+    margin-top: 70px;
+    font-size: 18px;
+}
+
+/*setting class secondarie aggiuntive*/
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-d-c{
+    flex-direction: column;
+}
+
+/*css tic tac toe*/
+#gameBoard{
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px auto;
+    cursor: pointer;
+    color: white;
+}
+
+.box{
+    width: 150px;
+    height: 150px;
+    border-right: 3px solid white;
+    border-bottom: 3px solid white;
+    border-radius: 5px;
+}
+
+
+.b-b-n
+{
+    border-bottom: none;
+}
+
+.b-r-n{
+    border-right: none;
+}
+
+/*css h1 e h2 per titolo e stuto del giocatore*/
+.bg-c-f{
+    color: #f2c14e;
+}
+.f-s-120px{
+    font-size: 100px;
+}
+
+.f-s-24px{
+    font-size: 32px;
+}
+
+.m-b-20px{
+    margin-bottom: 20px;
+}
+
+.SBT-m-b-300px{
+    margin-bottom: 100px;
+}
+
+/*css settings button*/
+button{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    cursor: pointer;
+    border-color: #2d414b;
+    color: #000;
+}
+
+a{
+    text-decoration: none;
+    color: #2d414b;
+}
+
+
+button:hover{
+    box-shadow: 1px 1px 15px 5px blue;   
+}
+    </style>
+</head>
+<body>
+    <div class="flex f-d-c">
+        <h1 id="NameTag" class="Title">TIC TAC TOE GAME</h1>
+        <button onclick="startgame()" class=" Button">
+            <a href="#">
+                Restart
+            </a>
+        </button> 
+        <div id="gameBoard">
+            <div class="box f-s-120px " id="0"></div>
+            <div class="box f-s-120px " id="1"></div>
+            <div class="box b-r-n f-s-120px " id="2"></div>
+            <div class="box f-s-120px " id="3"></div>
+            <div class="box f-s-120px " id="4"></div>
+            <div class="box b-r-n f-s-120px " id="5"></div>
+            <div class="box b-b-n f-s-120px " id="6"></div>
+            <div class="box b-b-n f-s-120px " id="7"></div>
+            <div class="box b-b-n b-r-n f-s-120px  SBT-m-b-300px" id="8"></div>
+        </div>
+        <h2 id="statusPlayer" class=" f-s-24px"></h2>
+    </div>
+    <script type="text/javascript">
+        var origBoard;
+const huPlayer = 'X'
+const UIPlayer = 'O'
+const Combo = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [6, 4, 2]
+]
+
+const cells = document.querySelectorAll('.box')
+let statusPlayerTxt = document.getElementById('statusPlayer')
+let restartBtn = document.getElementById('restartButton')
+startgame()
+
+function startgame(){
+    origBoard = Array.from(Array(9).keys())
+    /*console.log(origBoard)*/
+    for(let i = 0; i<cells.length; i++){
+        cells[i].innerText = ''
+        cells[i].addEventListener('click', turnclick)
+        statusPlayerTxt.innerHTML=''
+    }
+    
+}
+
+function turnclick(square){
+    /*console.log(square.target.id)*/
+    if(typeof origBoard[square.target.id] == 'number'){
+        turn(square.target.id, huPlayer)
+        if(!checkTie())
+        {
+            turn(bestSpot(), UIPlayer)
+        }
+    }
+}
+
+function turn(squareId, player){
+    origBoard[squareId] = player
+    document.getElementById(squareId).innerText = player
+    checkWin(origBoard, player)
+}
+
+function checkWin(){
+    for(let i = 0; i<Combo.length; i++)
+    {
+        let[a,b,c] = Combo[i]
+        if(origBoard[a] && (origBoard[a] == origBoard[b] && origBoard[a] == origBoard[c])){
+            if(origBoard[i] !== UIPlayer){
+                statusPlayerTxt.innerHTML="Ho vinto"
+            }
+            else if(huPlayer){
+                statusPlayerTxt.innerHTML="ho perso"
+            }
+            for(let i = 0; i<cells.length; i++){
+                cells[i].removeEventListener('click', turnclick)
+            }
+            return[a,b,c]
+            
+        }
+    }
+    return false
+}
+
+function emptySquares(){
+    return origBoard.filter(s => typeof s == 'number')
+}
+
+function bestSpot(){
+    return emptySquares()[0]
+}
+
+function checkTie(){
+    if(emptySquares().length == 0){
+        for(let i =0; i<cells.length; i++){
+            cells[i].removeEventListener('click', turnclick)
+        }
+    }
+}
+    </script>
+</body>
+</html>
