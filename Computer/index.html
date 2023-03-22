@@ -13,7 +13,6 @@
 }
 
 body{
-    color: #000;
     height: 100vh;
     background-color: black;
     
@@ -21,15 +20,20 @@ body{
 
 .Title{
     font-size: 48px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin-top: 15px;
-    color: white;
-    text-shadow: 5px 5px 15px blue;
+    color: yellow;
+    text-shadow: blue 5px 5px 15px;
+    border: 3px solid lime;
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: blue 1px 1px 15px 5px ;
 }
 
 .Button{
-    margin-top: 70px;
+    margin-top: 40px;
     font-size: 18px;
+    box-shadow: red 1px 1px 15px 5px ;
 }
 
 /*setting class secondarie aggiuntive*/
@@ -45,41 +49,42 @@ body{
 
 /*css tic tac toe*/
 #gameBoard{
-    width: 450px;
+    width: 350px;
     display: flex;
     flex-wrap: wrap;
     margin: 40px auto;
     cursor: pointer;
-    color: white;
+    color: yellow;
+    border: 3px solid lime;
+    padding: 20 20;
+    border-radius: 10px;
+    box-shadow: blue 1px 1px 15px 5px ;
 }
 
 .box{
-    width: 150px;
-    height: 150px;
-    border-right: 3px solid white;
-    border-bottom: 3px solid white;
-    border-radius: 5px;
+    width: 100px;
+    height: 100px;
+    border-right: 3px solid blue;
+    border-bottom: 3px solid red;
+
 }
 
 
-.b-b-n
+.bbn
 {
     border-bottom: none;
 }
 
-.b-r-n{
+.brn{
     border-right: none;
 }
 
-/*css h1 e h2 per titolo e stuto del giocatore*/
-.bg-c-f{
-    color: #f2c14e;
-}
-.f-s-120px{
-    font-size: 100px;
+
+.fs-50px{
+    font-size: 50px;
 }
 
-.f-s-24px{
+.fs-32px{
     font-size: 32px;
 }
 
@@ -87,15 +92,15 @@ body{
     margin-bottom: 20px;
 }
 
-.SBT-m-b-300px{
+.mb{
     margin-bottom: 100px;
 }
 
-/*css settings button*/
+/*impostazione button*/
 button{
     padding: 10px 20px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: transparent;
     cursor: pointer;
     border-color: #2d414b;
     color: #000;
@@ -103,37 +108,77 @@ button{
 
 a{
     text-decoration: none;
-    color: #2d414b;
+    color: yellow;
+    text-shadow: black 5px 5px 15px;
 }
 
 
 button:hover{
     box-shadow: 1px 1px 15px 5px blue;   
 }
+
+#statusPlayer{
+    margin-top: -10px;
+    color: yellow;
+    border: 2px solid lime;
+    border-radius: 10px;
+    padding: 10 10;
+    box-shadow: 1px 1px 10px 5px blue;
+}
+
+.hidden{
+    display: none;
+}
+
+.visible{
+    display: block;
+}
+
+.Principale{
+    border: 2px solid lime;
+    border-radius: 10px;
+    margin-top: 40px;
+    padding: 10px 10px;
+    box-shadow: 1px 1px 10px 5px blue;
+}
+
+.Principale:hover {
+    border: 2px solid blue;
+    box-shadow: 1px 1px 10px 5px yellow;
+    color: lime;
+}
+
+
     </style>
 </head>
 <body>
     <div class="flex f-d-c">
-        <h1 id="NameTag" class="Title">TIC TAC TOE GAME</h1>
+        <h1 id="NameTag" class="Title">PacManTris</h1>
         <button onclick="startgame()" class=" Button">
             <a href="#">
-                Restart
+                RESTART
             </a>
         </button> 
         <div id="gameBoard">
-            <div class="box f-s-120px " id="0"></div>
-            <div class="box f-s-120px " id="1"></div>
-            <div class="box b-r-n f-s-120px " id="2"></div>
-            <div class="box f-s-120px " id="3"></div>
-            <div class="box f-s-120px " id="4"></div>
-            <div class="box b-r-n f-s-120px " id="5"></div>
-            <div class="box b-b-n f-s-120px " id="6"></div>
-            <div class="box b-b-n f-s-120px " id="7"></div>
-            <div class="box b-b-n b-r-n f-s-120px  SBT-m-b-300px" id="8"></div>
+            <div class="box fs-50px " id="0"></div>
+            <div class="box fs-50px " id="1"></div>
+            <div class="box brn fs-50px " id="2"></div>
+            <div class="box fs-50px " id="3"></div>
+            <div class="box fs-50px " id="4"></div>
+            <div class="box brn fs-50px " id="5"></div>
+            <div class="box bbn fs-50px " id="6"></div>
+            <div class="box bbn fs-50px " id="7"></div>
+            <div class="box bbn brn fs-50px mb" id="8"></div>
         </div>
-        <h2 id="statusPlayer" class=" f-s-24px"></h2>
+
+        <h2 id="statusPlayer" class=" fs-32px"></h2>
+        <a class="Principale" href="../index.html">MENU PRINCIPALE</a>
+        
     </div>
+
+
     <script type="text/javascript">
+
         var origBoard;
 const huPlayer = 'X'
 const UIPlayer = 'O'
@@ -155,7 +200,6 @@ startgame()
 
 function startgame(){
     origBoard = Array.from(Array(9).keys())
-    /*console.log(origBoard)*/
     for(let i = 0; i<cells.length; i++){
         cells[i].innerText = ''
         cells[i].addEventListener('click', turnclick)
@@ -186,12 +230,15 @@ function checkWin(){
     {
         let[a,b,c] = Combo[i]
         if(origBoard[a] && (origBoard[a] == origBoard[b] && origBoard[a] == origBoard[c])){
-            if(origBoard[i] !== UIPlayer){
-                statusPlayerTxt.innerHTML="Ho vinto"
+            if(origBoard[i] != huPlayer){
+                statusPlayerTxt.innerHTML="HAI VINTO"
             }
-            else if(huPlayer){
-                statusPlayerTxt.innerHTML="ho perso"
+
+            if (origBoard[i] != UIPlayer) {
+                statusPlayerTxt.innerHTML="HAI PERSO"
             }
+
+
             for(let i = 0; i<cells.length; i++){
                 cells[i].removeEventListener('click', turnclick)
             }

@@ -13,7 +13,7 @@ body {
 	margin-top: 10px;
 	font-size: 60px;
 	text-shadow: -3px 0 blue, 0 3px blue, 3px 0 blue, 0 -3px blue;
-	box-shadow: blue 4px 4px 6px;
+	box-shadow: blue 1px 1px 15px 10px;
 	border: 5px solid red;
 	border-radius: 10px;
 	padding: 20px;
@@ -21,30 +21,31 @@ body {
 }
 
 #board {
-	margin-left: 40%;
+	margin-left: 40%;   /*40&*/
   display: grid;
-  margin-top: 50px;
+  margin-top: 40px;
   grid-template-columns: 100px 100px 100px;
   grid-template-rows: 100px 100px 100px;
   cursor: pointer;
   position: relative; /* serve per lo strike */
+  z-index: 10;
 }
 
 .tile {
   color: yellow;
-  font-size: 2em;
+  font-size: 32px;
   display: flex;
   justify-content: center;
   align-items: center;	
 }
 
 .right-border {
-  border-right: 0.2em solid blue;
+  border-right: 4px solid blue;
   box-shadow: red 3px 0px 0px 0px;
 }
 
 .bottom-border {
-  border-bottom: 0.2em solid blue;
+  border-bottom: 4px solid blue;
   box-shadow: red 3px 3px 0px 0px;
 }
 
@@ -58,67 +59,75 @@ body {
   width: 30%;
   height: 2px;
   top: 15%;
+  z-index: 1000;
 }
 .strike-row-2 {
 	margin-left: 18px;
   width: 30%;
   height: 2px;
   top: 48%;
+  z-index: 1000;
 }
 .strike-row-3 {
 	margin-left: 18px;
   width: 30%;
   height: 2px;
   top: 83%;
+  z-index: 1000;
 }
 .strike-column-1 {
 	margin-top: 20px;
   height: 85%;
   width: 2px;
   left: 5.5%;
+  z-index: 1000;
 }
 .strike-column-2 {
 	margin-top: 20px;
   height: 85%;
   width: 2px;
   left: 17%;
+  z-index: 1000;
 }
 .strike-column-3 {
 	margin-top: 20px;
   height: 85%;
   width: 2px;
   left: 29.5%;
+  z-index: 1000;
 }
 .strike-diagonal-1 {
   width: 30%;
   height: 2px;
   top: 50%;
   left: 3%;
-  transform: skewY(45deg);
+  z-index: 1000;
+  transform: skewY(45deg)
 }
 .strike-diagonal-2 {
   width: 30%;
   height: 2px;
   top: 50%;
   left: 2%;
+  z-index: 1000;
   transform: skewY(-45deg);
 }
 
 
 #game-over-area {
-	margin-left: 38.5%;
+	margin-left: 38%;
   text-align: center;
   border: blue 6px solid;
   border-radius: 10px;
-  box-shadow: red 3px 3px 6px;
+  box-shadow: red 1px 1px 7px 2px;
   padding: 20px;
-  width: 20%;
-  margin-top: 50px;
+  width: 300px;
+  margin-top: 40px;
 }
 
 h2 {
   color: yellow;
-  font-size: 2em;
+  font-size: 32px;
   margin-top: 0px;
   text-shadow: blue 2px 2px 2px;
 }
@@ -130,9 +139,9 @@ button {
   border: blue 2px solid;
   border-radius: 10px;
   padding: 10px;
-  font-size: 1.5em;
+  font-size: 24px;
   cursor: pointer;
-  box-shadow: red 2px 2px 2px;
+  box-shadow: red 1px 1px 7px 2px;
 }
 
 .hidden {
@@ -170,6 +179,34 @@ button {
 
 .no-bottom{
 	border-bottom: none;
+}
+
+.MenuP{
+  cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.Principale{
+  font-size: 24px;
+  text-decoration: none;
+  border: 3px solid blue;
+  border-radius: 10px;
+  padding: 10px;
+  color: yellow;
+  text-shadow: blue 2px 2px 2px;
+  box-shadow: red 1px 1px 7px 2px ;
+}
+
+.Screen{
+  display: flex;
+}
+
+.Pac{
+  margin-left: 30px;
+  margin-top: 30px;
+  width: 300px;
+  height: 300px;
 }
 
 
