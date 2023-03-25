@@ -40,13 +40,13 @@ body {
 }
 
 .right-border {
-  border-right: 4px solid blue;
-  box-shadow: red 3px 0px 0px 0px;
+  border-right: 4px solid red;
+  /*box-shadow: red 3px 0px 0px 0px;*/
 }
 
 .bottom-border {
   border-bottom: 4px solid blue;
-  box-shadow: red 3px 3px 0px 0px;
+  /*box-shadow: red 3px 3px ;*/
 }
 
 .strike {
